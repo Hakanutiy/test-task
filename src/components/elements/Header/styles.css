@@ -1,0 +1,17 @@
+.header{
+    display: flex;
+    gap: 1em;
+    background-color: #621cbe;
+    justify-content: space-between;
+}
+.header_link{
+    font-size: 48px;
+    color: white;
+    text-decoration: none;
+    padding: 20px;
+}
+.header_name{
+font-size: 16px;
+    padding: 29px;
+    color: white;
+}
