@@ -8,13 +8,15 @@
 
 }
 
-.table_column:hover{
-    background-color: #640a80;
 
-}
 
 .table_column_index{
     padding: 12px 16px;
     font-size: 18px;
     text-align: start;
+}
+.table_column_index:hover{
+    background-color: #640a80;
+    cursor: pointer;
+
 }

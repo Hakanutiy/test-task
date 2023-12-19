@@ -1,0 +1,19 @@
+.paginate{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.paginate_button{
+    background-color: #6430ab;
+    padding: 5px 15px;
+    color: #fff;
+    border-width: 0;
+    border-radius: 12px;
+    font-size: 18px;
+}
+
+.paginate_button:hover{
+    background-color: #43256e;
+    cursor: pointer;
+}
