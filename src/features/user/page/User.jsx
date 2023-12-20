@@ -50,8 +50,13 @@ export const User = ({ data }) => {
 
     const handleFilterClick = () => {
         const filteredData = data.filter((user) =>
-            user?.firstName.toLowerCase().includes(filterValue.toLowerCase())
+            Object.values(user).some(
+                (value) =>
+                    typeof value === 'string' &&
+                    value.toLowerCase().includes(filterValue.toLowerCase())
+            )
         );
+
         setFilteredRows(
             filteredData.map((user) => ({
                 columns: [
