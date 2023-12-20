@@ -17,3 +17,7 @@
     background-color: #43256e;
     cursor: pointer;
 }
+
+.active{
+    background-color: #3e1177;
+}

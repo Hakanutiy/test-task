@@ -8,7 +8,10 @@ import { Loader } from '@/components/elements/Loader/Loader.jsx'
 
 export const UserPage = () => {
 	const { data, isLoading } = useGetUsers({ config: {} })
-	const { nextPage, currentUserIndex, limit } = usePaginate(50, data)
+	const { nextPage, currentUserIndex, limit, currentPage } = usePaginate(
+		50,
+		data
+	)
 
 	return (
 		<div className={'userPage '}>
@@ -18,7 +21,12 @@ export const UserPage = () => {
 			) : (
 				<>
 					<User data={currentUserIndex} />
-					<Pagination totalUser={data} limit={limit} nextPage={nextPage} />
+					<Pagination
+						totalUser={data}
+						limit={limit}
+						nextPage={nextPage}
+						currentPage={currentPage}
+					/>
 				</>
 			)}
 		</div>
