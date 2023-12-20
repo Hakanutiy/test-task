@@ -6,7 +6,6 @@ export const usePaginate = (maxLimit, data) => {
     const lastUserIndex = currentPage * limit
     const firstUserIndex = lastUserIndex - limit
     const currentUserIndex = data ? data.slice(firstUserIndex, lastUserIndex) : [];
-    console.log(currentUserIndex)
     const nextPage = pageNum => setCurrentPage(pageNum)
     return {nextPage, currentUserIndex, limit}
 }

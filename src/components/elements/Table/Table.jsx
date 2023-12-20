@@ -1,11 +1,15 @@
 import React, {useState} from 'react';
 import './styles.css';
-import {useSortableTable} from "../../../hooks/useSortableTable.js";
+import {useSortableTable} from "@/hooks/useSortableTable.js";
+import { useSelector} from "react-redux";
+import {useActions} from "@/hooks/useActions.js";
+
 
 
 export const Table = ({ columns, rows }) => {
     const { sortedRows, onHeaderClick } = useSortableTable(columns, rows);
 
+    const {setCurrentModal} = useActions()
 
     return (
         <table className={'table'}>
@@ -24,11 +28,11 @@ export const Table = ({ columns, rows }) => {
             </thead>
             <tbody>
             {sortedRows?.map((row, rowIndex) => (
-                <tr className={'text-white'} key={rowIndex}>
+                <tr  className={'tableRow'} onClick={() => setCurrentModal(row)}   key={rowIndex}>
                     {row.columns.map((data, columnIndex) => (
                         <td
                             onClick={row.onRowClick}
-                            className={'px-4 py-3 text-lg'}
+                            className={'tableRowData'}
                             key={columnIndex}
                         >
                             {data}

@@ -20,3 +20,12 @@
     cursor: pointer;
 
 }
+
+.tableRow:hover{
+    background-color: grey;
+}
+
+.tableRowData{
+    cursor: pointer;
+    padding: 12px 16px ;
+}
