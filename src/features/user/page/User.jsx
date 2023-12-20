@@ -1,13 +1,14 @@
 
 import {Table} from "@/components/elements/Table/Table.jsx";
 import {useSelector} from "react-redux";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useActions} from "@/hooks/useActions.js";
-import {useNavigate} from "react-router-dom";
 
 
 
 export const User = ({ data }) => {
+    const [filterValue, setFilterValue] = useState('');
+    const [filteredRows, setFilteredRows] = useState([]);
 
     const modal = useSelector(state => state.modalReducer)
     const {clearCurrentModal} = useActions()
@@ -43,15 +44,41 @@ export const User = ({ data }) => {
     ];
 
 
+    const handleFilterChange = (e) => {
+        setFilterValue(e.target.value);
+    };
+
+    const handleFilterClick = () => {
+        const filteredData = data.filter((user) =>
+            user?.firstName.toLowerCase().includes(filterValue.toLowerCase())
+        );
+        setFilteredRows(
+            filteredData.map((user) => ({
+                columns: [
+                    user?._id,
+                    user?.email,
+                    user?.firstName ?? 'Name',
+                    user?.lastName ?? 'Name',
+                    user?.phone ?? 'Не указано',
+                ],
+            }))
+        );
+    };
+
     return (
         <div>
+
+            <input type="text" value={filterValue} onChange={handleFilterChange} />
+
+            <button onClick={handleFilterClick}>Найти</button>
+
             {modal.currentModalId && modal.currentModalId.columns && (
                 <div>
                     <Table columns={['id', 'Email', 'firstname', 'lastname', 'phone']} rows={newRowsWithEventHandlers} />
                 </div>
             )}
             <div>
-                <Table columns={[ 'id', 'Email', 'firstname', 'lastname', 'phone']} rows={rowsWithEventHandlers} />
+                <Table columns={[ 'id', 'Email', 'firstname', 'lastname', 'phone']} rows={filteredRows.length > 0 ? filteredRows : rowsWithEventHandlers} />
             </div>
 
 
